@@ -1,0 +1,113 @@
+{
+  "output_dir": "../outputs/pipeline",
+  "stages": [
+    {
+      "command": "scene",
+      "options": {
+        "output_file": "{output_dir}/scene.usda",
+        "geometry_file": "{output_dir}/geometry.json"
+      }
+    },
+    {
+      "command": "simulate",
+      "options": {
+        "camera_position": [
+          0,
+          330,
+          810
+        ],
+        "look_at": [
+          0,
+          274,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "baseline_offset": [
+          5,
+          0,
+          0
+        ],
+        "fov_x": 40,
+        "fov_y": 40,
+        "detector_width": 20,
+        "detector_height": 20,
+        "scene": "{output_dir}/scene.usda",
+        "output": "{output_dir}/raw.h5",
+        "width": 4,
+        "height": 4,
+        "samples_per_ray": 2,
+        "seed": 7
+      }
+    },
+    {
+      "command": "pixelize",
+      "options": {
+        "input": "{output_dir}/raw.h5",
+        "output": "{output_dir}/photons.h5",
+        "width": 4,
+        "height": 4
+      }
+    },
+    {
+      "command": "diffuse-map",
+      "options": {
+        "camera_position": [
+          0,
+          330,
+          810
+        ],
+        "look_at": [
+          0,
+          274,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "baseline_offset": [
+          5,
+          0,
+          0
+        ],
+        "fov_x": 40,
+        "fov_y": 40,
+        "detector_width": 20,
+        "detector_height": 20,
+        "scene": "{output_dir}/scene.usda",
+        "output": "{output_dir}/diffuse.h5",
+        "width": 4,
+        "height": 4,
+        "samples_per_ray": 1,
+        "seed": 4
+      }
+    },
+    {
+      "command": "inject-noise",
+      "options": {
+        "input_pixelized_file": "{output_dir}/photons.h5",
+        "input_diffuse_file": "{output_dir}/diffuse.h5",
+        "diffuse_noise_level": 10,
+        "time_jitter_sigma": 80,
+        "emission_mean": 2375,
+        "relaxation_tau": 50,
+        "seed": 7,
+        "ambient_level": 20,
+        "pulse_train_num": 100,
+        "dead_time": 13000,
+        "worker_threads": 2,
+        "min_range": 0,
+        "bin_width": 100,
+        "bin_number": 64,
+        "output_histogram_file": "{output_dir}/histogram.h5",
+        "output_depth_image_path": "{output_dir}/depth.png",
+        "output_file": "{output_dir}/histogram.h5"
+      }
+    }
+  ]
+}

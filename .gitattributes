@@ -1,0 +1,4 @@
+# Golden fixtures retain the original producer's exact text and binary formats.
+tests/fixtures/** -whitespace
+*.h5 binary
+*.png binary

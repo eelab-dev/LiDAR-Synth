@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "synthetic-data-generation"
+version = "0.1.0"
+description = "Monte Carlo LiDAR photon simulation and sensor noise generation"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+dependencies = [
+    "numpy==2.4.2",
+    "h5py==3.15.1",
+    "matplotlib==3.10.8",
+]
+
+[project.optional-dependencies]
+scene = ["usd-core==25.5"]
+
+[project.scripts]
+synthetic-data = "synthetic_data_generation.cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

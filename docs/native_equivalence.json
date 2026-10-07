@@ -1,0 +1,17 @@
+{
+  "simulate/CollisionData": {
+    "shape": [
+      74
+    ],
+    "repeat_equal": true,
+    "original_equal": true
+  },
+  "diffuse-map/diffuse_data": {
+    "shape": [
+      4,
+      4
+    ],
+    "repeat_equal": true,
+    "original_equal": true
+  }
+}

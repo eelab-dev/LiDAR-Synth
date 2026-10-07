@@ -1,0 +1,125 @@
+#usda 1.0
+
+def Xform "geometries"
+{
+    def Xform "floor"
+    {
+        def Mesh "floor_mesh"
+        {
+            int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+            int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
+            rel material:binding = </materials/white>
+            point3f[] points = [(-267.5, 0, 258), (-267.5, 14, 258), (-267.5, 0, -258), (267.5, 0, -258), (-267.5, 14, -258), (267.5, 14, 258), (267.5, 0, 258), (267.5, 14, -258)]
+        }
+    }
+
+    def Xform "ceiling"
+    {
+        def Mesh "ceiling_mesh"
+        {
+            int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+            int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
+            rel material:binding = </materials/red>
+            point3f[] points = [(-267.5, 540, 258), (-267.5, 554, 258), (-267.5, 540, -258), (267.5, 540, -258), (-267.5, 554, -258), (267.5, 554, 258), (267.5, 540, 258), (267.5, 554, -258)]
+        }
+    }
+
+    def Xform "back_wall"
+    {
+        def Mesh "back_wall_mesh"
+        {
+            int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+            int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
+            rel material:binding = </materials/green>
+            point3f[] points = [(-267.5, 0, -251), (-267.5, 554, -251), (-267.5, 0, -265), (267.5, 0, -265), (-267.5, 554, -265), (267.5, 554, -251), (267.5, 0, -251), (267.5, 554, -265)]
+        }
+    }
+
+    def Xform "left_wall"
+    {
+        def Mesh "left_wall_mesh"
+        {
+            int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+            int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
+            rel material:binding = </materials/green>
+            point3f[] points = [(-274.5, 0, 258), (-274.5, 554, 258), (-274.5, 0, -258), (-260.5, 0, -258), (-274.5, 554, -258), (-260.5, 554, 258), (-260.5, 0, 258), (-260.5, 554, -258)]
+        }
+    }
+
+    def Xform "right_wall"
+    {
+        def Mesh "right_wall_mesh"
+        {
+            int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+            int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
+            rel material:binding = </materials/green>
+            point3f[] points = [(260.5, 0, 258), (260.5, 554, 258), (260.5, 0, -258), (274.5, 0, -258), (260.5, 554, -258), (274.5, 554, 258), (274.5, 0, 258), (274.5, 554, -258)]
+        }
+    }
+
+    def Xform "ground"
+    {
+        def Mesh "ground_mesh"
+        {
+            int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+            int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
+            rel material:binding = </materials/white>
+            point3f[] points = [(-1337.5, -0.5, 1290), (-1337.5, 0.5, 1290), (-1337.5, -0.5, -1290), (1337.5, -0.5, -1290), (-1337.5, 0.5, -1290), (1337.5, 0.5, 1290), (1337.5, -0.5, 1290), (1337.5, 0.5, -1290)]
+        }
+    }
+
+    def Xform "wall"
+    {
+        def Mesh "wall_mesh"
+        {
+            int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+            int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
+            rel material:binding = </materials/white>
+            point3f[] points = [(-1337.5, 0, -457.5), (-1337.5, 2700, -457.5), (-1337.5, 0, -458.5), (1337.5, 0, -458.5), (-1337.5, 2700, -458.5), (1337.5, 2700, -457.5), (1337.5, 0, -457.5), (1337.5, 2700, -458.5)]
+        }
+    }
+
+    def Xform "tall_box"
+    {
+        def Mesh "tall_box_mesh"
+        {
+            int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+            int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
+            rel material:binding = </materials/green>
+            point3f[] points = [(12.21887, 7, 245.15788), (12.21887, 331.7606, 245.15788), (12.21887, 7, 59.648907), (215.16962, 7, 59.648907), (12.21887, 331.7606, 59.648907), (215.16962, 331.7606, 245.15788), (215.16962, 7, 245.15788), (215.16962, 331.7606, 59.648907)]
+        }
+    }
+
+    def Xform "short_box"
+    {
+        def Mesh "short_box_mesh"
+        {
+            int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+            int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
+            rel material:binding = </materials/red>
+            point3f[] points = [(62.205112, 7, 55.753906), (62.205112, 167, 55.753906), (12.588656, 7, -101.60939), (165.18336, 7, -149.72232), (12.588656, 167, -101.60939), (214.79984, 167, 7.640977), (214.79984, 7, 7.640977), (165.18336, 167, -149.72232)]
+        }
+    }
+}
+
+def Xform "materials"
+{
+    def Material "white"
+    {
+        token inputs:materialType = "lambert"
+        float inputs:reflectivity = 0.8
+    }
+
+    def Material "red"
+    {
+        token inputs:materialType = "lambert"
+        float inputs:reflectivity = 0.5
+    }
+
+    def Material "green"
+    {
+        token inputs:materialType = "lambert"
+        float inputs:reflectivity = 0.3
+    }
+}
+

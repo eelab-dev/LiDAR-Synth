@@ -1,0 +1,140 @@
+{
+    "schema_version": 1,
+    "units": "mm",
+    "scene_file": "scene.usda",
+    "coordinate_system": {
+        "vertical_axis": "y",
+        "depth_axis": "z"
+    },
+    "room": {
+        "size": [
+            535,
+            540,
+            516
+        ],
+        "wall_width": 14
+    },
+    "environment_geometry": {
+        "floor": {
+            "size": [
+                535,
+                14,
+                516
+            ],
+            "position": [
+                0,
+                7.0,
+                0
+            ]
+        },
+        "ceiling": {
+            "size": [
+                535,
+                14,
+                516
+            ],
+            "position": [
+                0,
+                547.0,
+                0
+            ]
+        },
+        "back_wall": {
+            "size": [
+                535,
+                554,
+                14
+            ],
+            "position": [
+                0,
+                277.0,
+                -258.0
+            ]
+        },
+        "left_wall": {
+            "size": [
+                14,
+                554,
+                516
+            ],
+            "position": [
+                -267.5,
+                277.0,
+                0
+            ]
+        },
+        "right_wall": {
+            "size": [
+                14,
+                554,
+                516
+            ],
+            "position": [
+                267.5,
+                277.0,
+                0
+            ]
+        },
+        "ground": {
+            "size": [
+                2675,
+                1,
+                2580
+            ],
+            "position": [
+                0,
+                0,
+                0
+            ]
+        },
+        "wall": {
+            "size": [
+                2675,
+                2700,
+                1
+            ],
+            "position": [
+                0,
+                1350.0,
+                -458.0
+            ]
+        }
+    },
+    "objects": {
+        "tall_box": {
+            "present": true,
+            "size": [
+                202.95074245966578,
+                324.7605871089,
+                185.50897546385562
+            ],
+            "position": [
+                113.69424138154767,
+                169.38029355445,
+                152.40339325437736
+            ],
+            "rotation": {
+                "axis": "y",
+                "angle_degrees": 0.0
+            }
+        },
+        "short_box": {
+            "present": true,
+            "shape": "box",
+            "size": [
+                160,
+                160,
+                165
+            ],
+            "position": [
+                113.69424138154767,
+                87.0,
+                -46.9842075500579
+            ],
+            "rotation": {
+                "axis": "y",
+                "angle_degrees": 17.5
+            }
+        }
+    }
+}
