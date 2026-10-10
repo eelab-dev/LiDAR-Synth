@@ -31,17 +31,6 @@ int main(int argc, char* argv[]){
   float detectorHeight = 20;
   Vec3 baselineOffset(5.0f, 0.0f, 0.0f);
   // // Parse flags
-  // std::unordered_map<std::string, std::string> args = parseFlags(argc, argv);
-
-  // // Handle known flags
-  // if (args.count("--model")) inputFile = args["--model"];
-  // if (args.count("--output")) outputFile = args["--output"];
-  // if (args.count("--width")) inputWidth = std::stoi(args["--width"]);
-  // if (args.count("--height")) inputHeight = std::stoi(args["--height"]);
-  // if (args.count("--fov")) fov = std::stof(args["--fov"]);
-  // if (args.count("--ssp")) ssp = std::stoi(args["--ssp"]);
-  // if (args.count("--seed")) seed = std::stoi(args["--seed"]);
-  // if (args.count("--detectorDistance")) detectorDistance = std::stof(args["--detectorDistance"]);
 
   // --- Parse Command-Line Arguments ---
   auto args = parseFlags(argc, argv);

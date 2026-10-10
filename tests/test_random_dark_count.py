@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from synthetic_data_generation.noise.dark_count import (
+from spad_noise_injection.dark_count import (
     add_random_dark_histogram,
     sample_random_dark_histogram,
 )

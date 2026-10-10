@@ -7,20 +7,20 @@ import h5py
 import numpy as np
 
 from synthetic_data_generation.cli import clean, noise
-from synthetic_data_generation.noise.ambient import create_ambient_timeStamp
-from synthetic_data_generation.noise.dark_count import (
+from spad_noise_injection.ambient import create_ambient_timeStamp
+from spad_noise_injection.dark_count import (
     add_darkCount_spatial_ratio_map,
     add_dark_histogram,
     read_darkcout_histogram,
     read_spatial_ratio_map,
 )
-from synthetic_data_generation.noise.dead_time import dead_time_simulation_rust
-from synthetic_data_generation.noise.diffuse_map import add_percentage_noise, read_diffuse_from_h5
-from synthetic_data_generation.noise.dnl import read_dnl_matrix
-from synthetic_data_generation.noise.histogram import form_histogram_image_rust
-from synthetic_data_generation.noise.relaxation_delay import create_relaxation_delay
-from synthetic_data_generation.noise.time_jitter import create_emmision_jitter
-from synthetic_data_generation.noise.timestamps import (
+from spad_noise_injection.dead_time import dead_time_simulation_rust
+from spad_noise_injection.diffuse_map import add_percentage_noise, read_diffuse_from_h5
+from spad_noise_injection.dnl import read_dnl_matrix
+from spad_noise_injection.histogram import form_histogram_image_rust
+from spad_noise_injection.relaxation_delay import create_relaxation_delay
+from spad_noise_injection.time_jitter import create_emmision_jitter
+from spad_noise_injection.timestamps import (
     get_timeStamp_count_sum,
     merge_pixelized_timeStamp,
     read_pixllized_timeStamp_from_h5,

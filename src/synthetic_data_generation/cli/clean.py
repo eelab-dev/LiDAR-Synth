@@ -4,10 +4,10 @@ import argparse
 from pathlib import Path
 from time import perf_counter
 
-from synthetic_data_generation.noise.histogram import form_histogram_image_rust, save_histogram_to_h5
-from synthetic_data_generation.noise.relaxation_delay import add_zero_relaxation_delay
-from synthetic_data_generation.noise.time_jitter import add_zero_jitter
-from synthetic_data_generation.noise.timestamps import (
+from spad_noise_injection.histogram import form_histogram_image_rust, save_histogram_to_h5
+from spad_noise_injection.relaxation_delay import add_zero_relaxation_delay
+from spad_noise_injection.time_jitter import add_zero_jitter
+from spad_noise_injection.timestamps import (
     get_timeStamp_count_sum,
     read_pixllized_timeStamp_from_h5,
 )

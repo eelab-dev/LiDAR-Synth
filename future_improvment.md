@@ -44,17 +44,17 @@ This file records existing logic issues found during migration. Their behavior i
 
 ## Material-binding lookup passes an uninitialized index by value
 
-- `native/simulator/include/usd_obj_loader.hpp` declares `meshMaterialIndex` without initialization and passes it by value into `resolve_material_binding_path()`. The helper assigns only its local copy. The compiler warns about the call.
+- `src/monte_carlo_simulation/simulator/include/usd_obj_loader.hpp` declares `meshMaterialIndex` without initialization and passes it by value into `resolve_material_binding_path()`. The helper assigns only its local copy. The compiler warns about the call.
 - Future work: remove the unused parameter or define its initialization and output contract after adding a focused loader test. This migration leaves the source computation unchanged.
 
 ## Simulator output also requires a CPU SYCL device
 
-- `native/simulator/simulate.cpp` creates a CPU-selected queue at the output stage even after its GPU kernel succeeds.
+- `src/monte_carlo_simulation/simulator/simulate.cpp` creates a CPU-selected queue at the output stage even after its GPU kernel succeeds.
 - A shell exposing only the GPU aborts there. Full activation now loads the existing oneAPI GPU and CPU runtimes; no device-selection logic was changed. Future work: determine whether that CPU queue is necessary and define a runtime contract before changing it.
 
 ## Scene and native simulation
 
-- `native/simulator/lidarSimulation.cpp` keeps the original fixed photon record capacity `640 * 120 * 800`. Larger simulations can silently stop recording hits once the atomic counter exceeds that capacity because overflow records are skipped. The migration preserves this capacity and behavior.
-- `native/simulator/include/Utility.hpp` keeps `computeAdjustedSize(..., target_area = 500000)`. Small requested image sizes are expanded to roughly 500k kernel pixels before collapsing back to requested camera pixels, which can make apparently small runs expensive. This is preserved for output consistency.
-- `native/simulator/lidarSimulation.cpp` still creates a GPU queue with `sycl::gpu_selector_v`. On machines without a working SYCL GPU runtime the executable will fail at runtime instead of falling back to CPU.
-- `native/pixelization/src/pixlelationLib.rs` preserves the original unguarded ray direction normalization. A zero-length direction can panic during `Ray::new`; the caller catches the panic and records a failed line, preserving the source behavior.
+- `src/monte_carlo_simulation/simulator/lidarSimulation.cpp` keeps the original fixed photon record capacity `640 * 120 * 800`. Larger simulations can silently stop recording hits once the atomic counter exceeds that capacity because overflow records are skipped. The migration preserves this capacity and behavior.
+- `src/monte_carlo_simulation/simulator/include/Utility.hpp` keeps `computeAdjustedSize(..., target_area = 500000)`. Small requested image sizes are expanded to roughly 500k kernel pixels before collapsing back to requested camera pixels, which can make apparently small runs expensive. This is preserved for output consistency.
+- `src/monte_carlo_simulation/simulator/lidarSimulation.cpp` still creates a GPU queue with `sycl::gpu_selector_v`. On machines without a working SYCL GPU runtime the executable will fail at runtime instead of falling back to CPU.
+- `src/monte_carlo_simulation/pixelization/src/pixlelationLib.rs` preserves the original unguarded ray direction normalization. A zero-length direction can panic during `Ray::new`; the caller catches the panic and records a failed line, preserving the source behavior.

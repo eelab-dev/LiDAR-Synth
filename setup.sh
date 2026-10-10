@@ -33,7 +33,7 @@ package_spec="$repo_dir"
 if [[ "$mode" == "--full" ]]; then package_spec="$repo_dir[scene]"; fi
 "$python_env" -m pip install -e "$package_spec"
 # pip builds a wheel through maturin in an isolated build environment.
-"$python_env" -m pip install --no-deps "$repo_dir/native/sensor"
+"$python_env" -m pip install --no-deps "$repo_dir/src/spad_noise_injection/rust"
 "$python_env" -c 'import _synthetic_sensor; print("Rust sensor extension loaded")'
 
 if [[ "$mode" == "--full" ]]; then
@@ -61,7 +61,7 @@ if [[ "$mode" == "--full" ]]; then
     fi
     # Pin the exact dependency used by the source simulator.
     tinyusdz_revision=a04ee0bcbd1a930e30cc40938fcee3526a6fa8eb
-    tinyusdz_dir="$repo_dir/native/simulator/external/tinyusdz"
+    tinyusdz_dir="$repo_dir/src/monte_carlo_simulation/simulator/external/tinyusdz"
     if [[ ! -d "$tinyusdz_dir/.git" ]]; then
         mkdir -p "$(dirname "$tinyusdz_dir")"
         git init "$tinyusdz_dir"
@@ -81,11 +81,11 @@ if [[ "$mode" == "--full" ]]; then
         export RUSTFLAGS="${RUSTFLAGS:-} -C link-arg=-Wl,-rpath,$HDF5_DIR/lib"
         cmake_extra+=("-DHDF5_ROOT=$HDF5_DIR" "-DCMAKE_BUILD_RPATH=$HDF5_DIR/lib")
     fi
-    cargo build --release --locked --manifest-path "$repo_dir/native/pixelization/Cargo.toml"
-    cmake -S "$repo_dir/native/simulator" -B "$repo_dir/native/simulator/build" \
+    cargo build --release --locked --manifest-path "$repo_dir/src/monte_carlo_simulation/pixelization/Cargo.toml"
+    cmake -S "$repo_dir/src/monte_carlo_simulation/simulator" -B "$repo_dir/src/monte_carlo_simulation/simulator/build" \
         -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx \
         -DSYCL_TARGETS="${SYCL_TARGETS:-nvptx64-nvidia-cuda,spir64_x86_64}" "${cmake_extra[@]}"
-    cmake --build "$repo_dir/native/simulator/build" --parallel "${BUILD_JOBS:-2}"
+    cmake --build "$repo_dir/src/monte_carlo_simulation/simulator/build" --parallel "${BUILD_JOBS:-2}"
 fi
 echo "Setup complete. Use: $venv_dir/bin/synthetic-data --help"
 if [[ "$mode" == "--full" ]]; then

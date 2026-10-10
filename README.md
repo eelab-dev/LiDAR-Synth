@@ -12,7 +12,7 @@ Scene + camera → diffuse map → ambient photon generation ───┤
 
 ## Quick start: sensor noise (no GPU)
 
-Requires Linux, Python 3.11 or newer with venv support, and Rust/Cargo. Run from this checkout:
+Download and extract the GitHub source archive, or clone the repository, then open a terminal in its root directory. Requires Linux, Python 3.11 or newer with venv support, a C/C++ build toolchain, and Rust/Cargo. Run:
 
 ```bash
 ./setup.sh --noise-only
@@ -32,13 +32,69 @@ export ONEAPI_ROOT=/path/to/intel/oneapi
 export CUDA_HOME=/path/to/cuda
 ./setup.sh --full
 source ./activate.sh --full
-synthetic-data run --config configs/pipeline.json --dry-run
-synthetic-data run --config configs/pipeline.json
+synthetic-data run --config examples/example_room_2/room_2_simulation.json --dry-run
+synthetic-data run --config examples/example_room_2/room_2_simulation.json
 ```
 
 `--full` installs OpenUSD bindings, fetches a pinned tinyusdz revision, and builds pixelization plus all three SYCL targets. `PYTHON`, `VENV_DIR`, `HDF5_DIR`, `BUILD_JOBS`, and `SYCL_TARGETS` can override interpreter, environment location, build parallelism, and compile targets. Simulation selects a GPU for tracing and a CPU SYCL device for its output stage. `source ./activate.sh --full` configures both runtimes; compiling a CPU target does not change device selection. Set `HDF5_DIR` to a custom HDF5 installation prefix when system development libraries are unavailable.
 
 The full example uses a small output grid, but the preserved simulator internally expands its launch grid to roughly 500,000 samples and reserves a large photon buffer. It is not a lightweight CPU demo. See [known logic issues](future_improvment.md) before planning large runs.
+
+## Generate the room images
+
+The source includes scenes, configs, and notebooks under `examples/example_room_1/` and `examples/example_room_2/`. Large generated HDF5 files and plot images are excluded from Git; generate them locally. Both room examples require the full simulator setup above.
+
+After running the Room 2 simulation command, generate its depth and intensity images from the repository root:
+
+```bash
+MPLBACKEND=Agg python - <<'PYTHON'
+import json
+from pathlib import Path
+
+folder = Path("examples/example_room_2")
+for name in ("depth", "intensity"):
+    namespace = {}
+    notebook = json.loads((folder / f"{name}.ipynb").read_text())
+    for cell in notebook["cells"]:
+        if cell["cell_type"] == "code":
+            exec(compile("".join(cell["source"]), f"{name}.ipynb", "exec"), namespace)
+PYTHON
+```
+
+This uses the shared plotting functions without installing Jupyter. For Room 1, run `synthetic-data run --config examples/example_room_1/room_1_simulation.json` and change the plotting command’s folder to `examples/example_room_1`. Depth images display peak histogram bin indices, not calibrated physical distances. Intensity sums photons within the histogram window.
+
+For interactive editing, install Jupyter into the activated environment with `python -m pip install jupyterlab`, then run `jupyter lab`. Use that environment's Python kernel. Notebooks reuse existing histogram data; after changing configuration, rerun the pipeline or set `regenerate = True` in the notebook.
+
+Generate Room 2 reflectivity data separately:
+
+```bash
+synthetic-data run --config examples/example_room_2/room_2_reflectivity.json
+```
+
+## Portability
+
+No original source checkout or `/home/peizhao` directory is needed. Room configs resolve scene and output paths relative to their own location. Run the documented commands from the repository root.
+
+Do not copy `.venv/`, native `build/`, or Rust `target/` directories between machines; rebuild them using setup. These generated files can embed installation paths. `ONEAPI_ROOT`, `CUDA_HOME`, and `HDF5_DIR` are optional overrides for dependencies installed outside their usual locations. The full setup defaults to NVIDIA GPU and CPU SYCL targets; another supported GPU requires an appropriate toolchain/runtime and `SYCL_TARGETS` override. Windows and macOS are not validated targets for this project.
+
+## Source layout
+
+```text
+src/
+├── monte_carlo_simulation/
+│   ├── scene/          # Python scene and camera generation
+│   ├── simulator/      # C++/SYCL photon tracing and reflectivity
+│   └── pixelization/   # Rust photon pixelization
+├── spad_noise_injection/
+│   ├── *.py            # Noise, histograms, and depth processing
+│   └── rust/           # Rust sensor kernels
+└── synthetic_data_generation/
+    ├── cli/            # Shared synthetic-data command
+    └── io/             # Shared IO namespace
+```
+
+Python imports use `spad_noise_injection` and `monte_carlo_simulation.scene`.
+After upgrading from the previous layout, rerun setup to refresh the editable installation and native builds. The `synthetic-data` commands are unchanged.
 
 ## Commands
 
@@ -60,7 +116,7 @@ Use `synthetic-data COMMAND --help` for arguments. Public CLI flags use kebab-ca
 
 ## Pipeline configuration and existing data
 
-[configs/pipeline.json](configs/pipeline.json) shows the entire workflow. A configuration contains an ordered `stages` list; each stage has a `command` and `options`. Option keys map to CLI flags. File paths resolve relative to the configuration file, and `{output_dir}` expands to its `output_dir` setting. `run --output-dir PATH` overrides that directory relative to the invoking shell. Execution stops at the first failed stage.
+[Room 2 simulation config](examples/example_room_2/room_2_simulation.json) shows photon simulation, pixelization, and histogram generation. [Room 2 reflectivity config](examples/example_room_2/room_2_reflectivity.json) generates material reflectivity. A configuration contains an ordered `stages` list; each stage has a `command` and `options`. Option keys map to CLI flags. File paths resolve relative to the configuration file, and `{output_dir}` expands to its `output_dir` setting. `run --output-dir PATH` overrides that directory relative to the invoking shell. Execution stops at the first failed stage.
 
 To reuse existing photon data, provide only an `inject-noise` stage pointing to your pixelized and diffuse HDF5 inputs. DNL, measured dark counts, and spatial maps are optional external files. The inherited noise CLI requires both `output_file` and `output_histogram_file`; use the same path for both as in the examples. Dataset filenames, array dtypes, timing conventions, seed streams, and stage ordering remain compatible with the original sensor pipeline. Clean/noisy variants can reuse the same photon files.
 

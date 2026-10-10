@@ -11,15 +11,15 @@ This repository is a source extraction from the current working files of the two
 
 | Original | New location |
 | --- | --- |
-| lidar-simulation `syclImplementation/lidarSimulation.cpp` | `native/simulator/simulate.cpp` |
-| lidar-simulation `syclImplementation/lidarSceneDiffuseMap.cpp` | `native/simulator/diffuse_map.cpp` |
-| lidar-simulation `syclImplementation/lidarGroundTruth.cpp` | `native/simulator/ground_truth.cpp` |
-| lidar-simulation `syclImplementation/include/*.hpp` | `native/simulator/include/` |
-| lidar-simulation `rustLib/src/` | `native/pixelization/src/` (`main.rs`, `pixelization.rs`) |
-| lidar-simulation camera/scene/static-scene/object-removal scripts and scenGenLib | `src/synthetic_data_generation/scene/` |
-| LIDAR-agent `sensorPythonLib` (except for_papaer.py) | `src/synthetic_data_generation/noise/` |
+| lidar-simulation `syclImplementation/lidarSimulation.cpp` | `src/monte_carlo_simulation/simulator/simulate.cpp` |
+| lidar-simulation `syclImplementation/lidarSceneDiffuseMap.cpp` | `src/monte_carlo_simulation/simulator/diffuse_map.cpp` |
+| lidar-simulation `syclImplementation/lidarGroundTruth.cpp` | `src/monte_carlo_simulation/simulator/ground_truth.cpp` |
+| lidar-simulation `syclImplementation/include/*.hpp` | `src/monte_carlo_simulation/simulator/include/` |
+| lidar-simulation `rustLib/src/` | `src/monte_carlo_simulation/pixelization/src/` (`main.rs`, `pixelization.rs`) |
+| lidar-simulation camera/scene/static-scene/object-removal scripts and scenGenLib | `src/monte_carlo_simulation/scene/` |
+| LIDAR-agent `sensorPythonLib` (except for_papaer.py) | `src/spad_noise_injection/` |
 | LIDAR-agent noiseSimulationCLI.py / histogramCLI.py | `src/synthetic_data_generation/cli/noise.py` / `clean.py` |
-| LIDAR-agent sensorRustLib sources | `native/sensor/` |
+| LIDAR-agent sensorRustLib sources | `src/spad_noise_injection/rust/` |
 | Both projects' relevant tests | `tests/` |
 
 The source shell orchestrators were replaced by the portable staged JSON runner and setup/activation scripts. Their machine-specific paths and file-moving deployment behavior are not carried into the new interface. Numerical processing still calls the migrated implementations. CLI aliases accept original noise flag spellings; the old top-level batch JSON schema itself is not silently reinterpreted.

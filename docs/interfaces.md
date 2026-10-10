@@ -5,9 +5,9 @@ Public Python modules use snake_case under `synthetic_data_generation`; public C
 | Original entry | New public entry |
 | --- | --- |
 | `dataGenJason.sh`, `diffuseMapping.sh` | `synthetic-data run --config ...` with explicit stages |
-| `lidarSimulation.cpp` | `synthetic-data simulate` / `native/simulator/simulate.cpp` |
-| `lidarSceneDiffuseMap.cpp` | `synthetic-data diffuse-map` / `native/simulator/diffuse_map.cpp` |
-| `lidarGroundTruth.cpp` | `synthetic-data ground-truth` / `native/simulator/ground_truth.cpp` |
+| `lidarSimulation.cpp` | `synthetic-data simulate` / `src/monte_carlo_simulation/simulator/simulate.cpp` |
+| `lidarSceneDiffuseMap.cpp` | `synthetic-data diffuse-map` / `src/monte_carlo_simulation/simulator/diffuse_map.cpp` |
+| `lidarGroundTruth.cpp` | `synthetic-data ground-truth` / `src/monte_carlo_simulation/simulator/ground_truth.cpp` |
 | `rustLib` pixelation CLI | `synthetic-data pixelize` |
 | `noiseSimulationCLI.py` | `synthetic-data inject-noise` |
 | `histogramCLI.py` | `synthetic-data histogram` |

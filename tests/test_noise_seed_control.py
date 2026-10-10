@@ -2,8 +2,8 @@ import unittest
 
 import numpy as np
 
-from synthetic_data_generation.noise.ambient import create_ambient_timeStamp
-from synthetic_data_generation.noise.diffuse_map import add_percentage_noise
+from spad_noise_injection.ambient import create_ambient_timeStamp
+from spad_noise_injection.diffuse_map import add_percentage_noise
 
 
 class NoiseSeedControlTests(unittest.TestCase):

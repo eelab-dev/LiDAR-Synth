@@ -1,13 +1,30 @@
 import json
+import os
 from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
 
-from synthetic_data_generation.cli.main import native_command, pipeline_commands, run_pipeline
+from synthetic_data_generation.cli.main import native_command, native_executable, pipeline_commands, run_pipeline
 
 
 class PipelineTests(unittest.TestCase):
+    def test_native_discovery_uses_reorganized_source_tree(self):
+        root = Path(__file__).resolve().parents[1]
+        expected = {
+            "simulate": "simulator/build/LiDARSimulation",
+            "diffuse-map": "simulator/build/LiDARSceneDiffuseMap",
+            "ground-truth": "simulator/build/LiDARGroundtruth",
+            "pixelize": "pixelization/target/release/lidar_pixelation",
+        }
+        with patch.dict(os.environ, {"SYNTHETIC_DATA_NATIVE_DIR": ""}), \
+                patch.object(Path, "is_file", return_value=True), \
+                patch("synthetic_data_generation.cli.main.os.access", return_value=True):
+            for command, relative in expected.items():
+                with self.subTest(command=command):
+                    self.assertEqual(native_executable(command),
+                                     str(root / "src/monte_carlo_simulation" / relative))
+
     def test_paths_resolve_against_config_not_working_directory(self):
         with tempfile.TemporaryDirectory(prefix="synthetic paths ") as directory:
             config = Path(directory) / "pipeline.json"

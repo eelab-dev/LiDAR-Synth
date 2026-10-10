@@ -12,7 +12,7 @@ or scripts depend on them, including the serialized field name
 `--emission-mean` are additive only.
 
 The Rust native sensor backend is built as the top-level extension
-`_synthetic_sensor` from `native/sensor`. Python falls back to the pure-Python
+`_synthetic_sensor` from `src/spad_noise_injection/rust`. Python falls back to the pure-Python
 dead-time and histogram implementations if the extension is unavailable, matching
 the source project fallback behavior.
 

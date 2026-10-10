@@ -1,0 +1,60 @@
+{
+  "output_dir": ".",
+  "stages": [
+    {
+      "command": "simulate",
+      "options": {
+        "scene": "room_1.usda",
+        "output": "{output_dir}/raw.h5",
+        "camera_position": [
+          300.3439483285741,
+          95.83950936290105,
+          281.81155637239846
+        ],
+        "look_at": [
+          0.34394832857406676,
+          95.83950936290105,
+          280.0
+        ],
+        "up": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "baseline_offset": [
+          5,
+          0,
+          0
+        ],
+        "detector_width": 18,
+        "detector_height": 18,
+        "fov_x": 110,
+        "fov_y": 110,
+        "width": 100,
+        "height": 100,
+        "samples_per_ray": 25000,
+        "seed": 1
+      }
+    },
+    {
+      "command": "pixelize",
+      "options": {
+        "input": "{output_dir}/raw.h5",
+        "output": "{output_dir}/photons.h5",
+        "width": 60,
+        "height": 60
+      }
+    },
+    {
+      "command": "histogram",
+      "options": {
+        "input_pixelized_file": "{output_dir}/photons.h5",
+        "min_range": 15,
+        "bin_width": 25,
+        "bin_number": 120,
+        "emission_mean": 0,
+        "output_histogram_file": "{output_dir}/histogram.h5"
+      }
+    }
+  ]
+}

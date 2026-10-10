@@ -11,7 +11,18 @@ outputs/
 .cache/
 .pytest_cache/
 .ruff_cache/
-native/simulator/external/
+src/monte_carlo_simulation/simulator/external/
 tests/fixtures/baseline_noise/original_cli_work/
 *.log
 .DS_Store
+
+# Local agent/editor state and generated example results
+.omx/
+.vscode/
+.ipynb_checkpoints/
+tests/
+examples/example_room_*/*.h5
+examples/example_room_*/*.png
+examples/example_room_*/validation.json
+examples/example_room_*/reflectivity_validation.json
+future_improvment.md

@@ -1,0 +1,40 @@
+{
+  "output_dir": ".",
+  "stages": [
+    {
+      "command": "diffuse-map",
+      "options": {
+        "scene": "room_2.usda",
+        "output": "{output_dir}/reflectivity.h5",
+        "camera_position": [
+          3.5887303168332956,
+          96.95825285901212,
+          67.4154305598385
+        ],
+        "look_at": [
+          3.5887303168332956,
+          -103.04174714098788,
+          70.0
+        ],
+        "up": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "baseline_offset": [
+          5,
+          0,
+          0
+        ],
+        "detector_width": 8,
+        "detector_height": 8,
+        "fov_x": 90,
+        "fov_y": 90,
+        "width": 60,
+        "height": 60,
+        "samples_per_ray": 3200,
+        "seed": 4
+      }
+    }
+  ]
+}

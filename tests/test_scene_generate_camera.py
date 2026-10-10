@@ -3,7 +3,7 @@ from __future__ import annotations
 import random
 import unittest
 
-from synthetic_data_generation.scene.generate_camera import (
+from monte_carlo_simulation.scene.generate_camera import (
     DEFAULT_BASELINE_OFFSET,
     look_at_from_yaw_pitch,
     resolve_camera_pose,

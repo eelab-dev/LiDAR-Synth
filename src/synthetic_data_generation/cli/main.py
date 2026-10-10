@@ -29,7 +29,7 @@ def native_executable(command):
     override = os.environ.get('SYNTHETIC_DATA_NATIVE_DIR')
     candidates = [Path(override) / target] if override else []
     directory = 'pixelization/target/release' if command == 'pixelize' else 'simulator/build'
-    candidates.append(root / 'native' / directory / target)
+    candidates.append(root / 'src' / 'monte_carlo_simulation' / directory / target)
     for path in candidates:
         if path.is_file() and os.access(path, os.X_OK):
             return str(path)
@@ -147,7 +147,7 @@ def dispatch(command, argv):
     if command in NATIVE_TARGETS:
         subprocess.run(native_command(command, argv), check=True)
     elif command in SCENE_MODULES:
-        subprocess.run([sys.executable, '-m', 'synthetic_data_generation.scene.' + SCENE_MODULES[command], *argv], check=True)
+        subprocess.run([sys.executable, '-m', 'monte_carlo_simulation.scene.' + SCENE_MODULES[command], *argv], check=True)
     elif command == 'inject-noise':
         from .noise import main
         main(argv)

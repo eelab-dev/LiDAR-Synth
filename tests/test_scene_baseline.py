@@ -12,7 +12,7 @@ import numpy as np
 @unittest.skipUnless(importlib.util.find_spec("pxr"), "Full setup required for OpenUSD")
 class SceneBaselineTests(unittest.TestCase):
     def test_seeded_scene_and_metadata_match_original(self):
-        from synthetic_data_generation.scene.generate_scene import main
+        from monte_carlo_simulation.scene.generate_scene import main
         expected = Path(__file__).parent / "fixtures" / "baseline_scene"
         python_state, numpy_state = random.getstate(), np.random.get_state()
         try:

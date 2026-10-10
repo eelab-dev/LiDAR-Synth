@@ -42,3 +42,25 @@ The initial `nvidia-smi` check reported a driver/NVML version mismatch. Actual S
 The native compiler reports inherited warnings, including an uninitialized material-binding index; they are recorded in `future_improvment.md` rather than repaired. Native-source comparison confirms 29 source files match the originals after whitespace and module/file-name normalization. Of the sensor functions, 55 ASTs are identical; the remaining differences are one docstring whitespace change and two backend import-path migrations (details in `source_verification.json`).
 
 These checks establish equivalence for the captured fixtures and local reference environment. They do not promise bitwise reproducibility across different GPUs, compilers or arbitrary environments. GPU record order is intentionally not normalized in production, and independently sampled scenes can differ. The relocation check reuses the installed dependency environment while importing all project Python code from its copied location.
+
+## Source layout migration validation (2026-10-11)
+
+Code now lives in `src/monte_carlo_simulation`, `src/spad_noise_injection`,
+and the shared `src/synthetic_data_generation` CLI package. Validation after
+updating imports and build paths:
+
+- All 31 tests passed with `RUN_GPU_TESTS=1`, including native photon and
+  reflectivity fixture equivalence checks.
+- Full setup rebuilt the Rust sensor extension, Rust pixelization executable,
+  and all three C++/SYCL executables from the new paths.
+- All five example notebooks executed against existing data in temporary copies.
+- The CPU demo, scene/camera CLI dispatch, pixelization smoke test, Python wheel
+  package contents, shell syntax and diff whitespace checks passed.
+- Build validation used oneAPI 2024.1 with the installed CUDA 12.0 toolkit and
+  custom HDF5 prefix supplied through environment variables. The locally default
+  CUDA 13 assembler rejected the compiler's `sm_50` target; selecting CUDA 12
+  through `CUDA_HOME` resolved it without source changes.
+
+Old Python imports under `synthetic_data_generation.noise` and
+`synthetic_data_generation.scene` are replaced by `spad_noise_injection` and
+`monte_carlo_simulation.scene`. Public CLI commands are unchanged.
