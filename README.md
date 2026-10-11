@@ -10,6 +10,40 @@ Scene + camera → diffuse map → ambient photon generation ───┤
                           → histogram / DNL → dark counts → HDF5
 ```
 
+## Example images
+
+Depth previews show the strongest histogram bin (zero-based), not calibrated
+distance. Reflectivity previews show mean assigned material reflectivity, and
+intensity previews show photon counts within the histogram window. Colour scales
+vary between images.
+
+| Example | Depth | Reflectivity | Intensity |
+| --- | --- | --- | --- |
+| [Room 1](examples/example_room_1/) | ![Room 1 depth preview](docs/images/room_1/depth.png) | ![Room 1 material reflectivity](docs/images/room_1/reflectivity.png) | ![Room 1 photon intensity](docs/images/room_1/intensity.png) |
+| [Room 2](examples/example_room_2/) | ![Room 2 depth preview](docs/images/room_2/depth.png) | ![Room 2 material reflectivity](docs/images/room_2/reflectivity.png) | ![Room 2 photon intensity](docs/images/room_2/intensity.png) |
+| [NLOS experiment settings](examples/NLOS_experiment_setting_example/) | ![NLOS experiment depth preview](docs/images/nlos_experiment/depth.png) | ![NLOS experiment material reflectivity](docs/images/nlos_experiment/reflectivity.png) | ![NLOS experiment photon intensity](docs/images/nlos_experiment/intensity.png) |
+
+Open an image to view it at full size. These documentation snapshots live in
+`docs/images/`; generated HDF5 files and images under `examples/` remain local
+and ignored by Git. Each example includes `depth.ipynb`, `intensity.ipynb`, and
+`reflectivity.ipynb`, which save the corresponding PNG beside the notebook.
+Reflectivity uses the scene's `diffuse-map` pipeline; the experiment
+preview uses [this configuration](examples/NLOS_experiment_setting_example/NLOS_setting_reflectivity.json)
+with the saved camera, a 32×32 grid, 3,200 samples per ray, and seed 4.
+The NLOS reflectivity preview uses the per-object materials documented in its
+[example README](examples/NLOS_experiment_setting_example/README.md#object-reflectivity).
+Its depth and intensity snapshots predate that material change and must be
+regenerated to reflect the new settings.
+
+For generation commands, configuration files, and notebook instructions, see
+[Room 1](examples/example_room_1/README.md),
+[Room 2](examples/example_room_2/README.md), and
+[NLOS experiment settings](examples/NLOS_experiment_setting_example/README.md).
+Notebooks reuse existing HDF5 files by default. Set `regenerate = True` after
+changing a scene or configuration; depth and intensity share a histogram, while
+reflectivity is generated separately. Updating local PNGs does not automatically
+refresh the documentation snapshots.
+
 ## Quick start: sensor noise (no GPU)
 
 Download and extract the GitHub source archive, or clone the repository, then open a terminal in its root directory. Requires Linux, Python 3.11 or newer with venv support, a C/C++ build toolchain, and Rust/Cargo. Run:

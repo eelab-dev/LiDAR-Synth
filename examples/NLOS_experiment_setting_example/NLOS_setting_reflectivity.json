@@ -1,0 +1,40 @@
+{
+  "output_dir": ".",
+  "stages": [
+    {
+      "command": "diffuse-map",
+      "options": {
+        "scene": "nlos_experiment_setting.usda",
+        "output": "{output_dir}/reflectivity.h5",
+        "camera_position": [
+          70.0,
+          215.0,
+          650.7
+        ],
+        "look_at": [
+          70.0,
+          215.0,
+          649.7
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "baseline_offset": [
+          55.0,
+          0.0,
+          0.0
+        ],
+        "detector_width": 20,
+        "detector_height": 20,
+        "fov_x": 52.8,
+        "fov_y": 52.8,
+        "width": 32,
+        "height": 32,
+        "samples_per_ray": 3200,
+        "seed": 4
+      }
+    }
+  ]
+}

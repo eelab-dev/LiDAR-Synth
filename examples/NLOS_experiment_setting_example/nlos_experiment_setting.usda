@@ -8,7 +8,7 @@ def Xform "geometries"
         {
             int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
             int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
-            rel material:binding = </materials/white>
+            rel material:binding = </materials/floor>
             point3f[] points = [(-267.5, 0, 258), (-267.5, 14, 258), (-267.5, 0, -258), (267.5, 0, -258), (-267.5, 14, -258), (267.5, 14, 258), (267.5, 0, 258), (267.5, 14, -258)]
         }
     }
@@ -19,7 +19,7 @@ def Xform "geometries"
         {
             int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
             int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
-            rel material:binding = </materials/white>
+            rel material:binding = </materials/ceiling>
             point3f[] points = [(-267.5, 540, 258), (-267.5, 554, 258), (-267.5, 540, -258), (267.5, 540, -258), (-267.5, 554, -258), (267.5, 554, 258), (267.5, 540, 258), (267.5, 554, -258)]
         }
     }
@@ -30,7 +30,7 @@ def Xform "geometries"
         {
             int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
             int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
-            rel material:binding = </materials/white>
+            rel material:binding = </materials/back_wall>
             point3f[] points = [(-267.5, 0, -251), (-267.5, 554, -251), (-267.5, 0, -265), (267.5, 0, -265), (-267.5, 554, -265), (267.5, 554, -251), (267.5, 0, -251), (267.5, 554, -265)]
         }
     }
@@ -41,7 +41,7 @@ def Xform "geometries"
         {
             int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
             int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
-            rel material:binding = </materials/white>
+            rel material:binding = </materials/left_wall>
             point3f[] points = [(-274.5, 0, 258), (-274.5, 554, 258), (-274.5, 0, -258), (-260.5, 0, -258), (-274.5, 554, -258), (-260.5, 554, 258), (-260.5, 0, 258), (-260.5, 554, -258)]
         }
     }
@@ -52,7 +52,7 @@ def Xform "geometries"
         {
             int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
             int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
-            rel material:binding = </materials/white>
+            rel material:binding = </materials/right_wall>
             point3f[] points = [(260.5, 0, 258), (260.5, 554, 258), (260.5, 0, -258), (274.5, 0, -258), (260.5, 554, -258), (274.5, 554, 258), (274.5, 0, 258), (274.5, 554, -258)]
         }
     }
@@ -63,7 +63,7 @@ def Xform "geometries"
         {
             int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
             int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
-            rel material:binding = </materials/white>
+            rel material:binding = </materials/ground>
             point3f[] points = [(-1337.5, -0.5, 1290), (-1337.5, 0.5, 1290), (-1337.5, -0.5, -1290), (1337.5, -0.5, -1290), (-1337.5, 0.5, -1290), (1337.5, 0.5, 1290), (1337.5, -0.5, 1290), (1337.5, 0.5, -1290)]
         }
     }
@@ -74,7 +74,7 @@ def Xform "geometries"
         {
             int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
             int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
-            rel material:binding = </materials/white>
+            rel material:binding = </materials/wall>
             point3f[] points = [(-1337.5, 0, -557.5), (-1337.5, 2700, -557.5), (-1337.5, 0, -558.5), (1337.5, 0, -558.5), (-1337.5, 2700, -558.5), (1337.5, 2700, -557.5), (1337.5, 0, -557.5), (1337.5, 2700, -558.5)]
         }
     }
@@ -85,7 +85,7 @@ def Xform "geometries"
         {
             int[] faceVertexCounts = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
             int[] faceVertexIndices = [0, 1, 2, 3, 0, 2, 2, 1, 4, 4, 3, 2, 0, 5, 1, 6, 0, 3, 6, 5, 0, 1, 5, 4, 7, 3, 4, 4, 5, 7, 7, 6, 3, 5, 6, 7]
-            rel material:binding = </materials/white>
+            rel material:binding = </materials/tall_box>
             point3f[] points = [(-62.5, 7, 147.5), (-62.5, 382, 147.5), (-62.5, 7, -7.5), (137.5, 7, -7.5), (-62.5, 382, -7.5), (137.5, 382, 147.5), (137.5, 7, 147.5), (137.5, 382, -7.5)]
         }
     }
@@ -93,28 +93,52 @@ def Xform "geometries"
 
 def Xform "materials"
 {
-    def Material "white"
+    def Material "floor"
     {
         token inputs:materialType = "lambert"
-        float inputs:reflectivity = 0.8
+        float inputs:reflectivity = 0.60
     }
 
-    def Material "red"
+    def Material "ceiling"
     {
         token inputs:materialType = "lambert"
-        float inputs:reflectivity = 0.5
+        float inputs:reflectivity = 0.85
     }
 
-    def Material "green"
+    def Material "back_wall"
     {
         token inputs:materialType = "lambert"
-        float inputs:reflectivity = 0.3
+        float inputs:reflectivity = 0.75
     }
 
-    def Material "blue"
+    def Material "left_wall"
     {
         token inputs:materialType = "lambert"
-        float inputs:reflectivity = 0.2
+        float inputs:reflectivity = 0.35
+    }
+
+    def Material "right_wall"
+    {
+        token inputs:materialType = "lambert"
+        float inputs:reflectivity = 0.50
+    }
+
+    def Material "ground"
+    {
+        token inputs:materialType = "lambert"
+        float inputs:reflectivity = 0.25
+    }
+
+    def Material "wall"
+    {
+        token inputs:materialType = "lambert"
+        float inputs:reflectivity = 0.90
+    }
+
+    def Material "tall_box"
+    {
+        token inputs:materialType = "lambert"
+        float inputs:reflectivity = 0.15
     }
 
     def Material "detector"
@@ -123,4 +147,3 @@ def Xform "materials"
         float inputs:reflectivity = 0.65
     }
 }
-
