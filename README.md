@@ -1,4 +1,4 @@
-# NLOS-LiDAR
+# Synthetic Data Generation
 
 Monte Carlo LiDAR photon simulation, detector pixelization, and sensor noise generation in one repository. The simulator uses C++/SYCL, pixelization and sensor kernels use Rust, and Python provides scene generation, noise models, HDF5 IO, and a common command line.
 
@@ -92,10 +92,6 @@ src/
 Python imports use `spad_noise_injection` and `monte_carlo_simulation.scene`.
 After upgrading from the previous layout, rerun setup to refresh the editable installation and native builds. The `synthetic-data` commands are unchanged.
 
-The `tests/` folder is reserved for local tests and fixtures and is excluded from
-version control by `.gitignore`. Existing local test files are kept on disk;
-fresh clones do not include this folder.
-
 ## Commands
 
 | Command | Purpose |
@@ -121,6 +117,8 @@ Use `synthetic-data COMMAND --help` for arguments. Public CLI flags use kebab-ca
 To reuse existing photon data, provide only an `inject-noise` stage pointing to your pixelized and diffuse HDF5 inputs. DNL, measured dark counts, and spatial maps are optional external files. The inherited noise CLI requires both `output_file` and `output_histogram_file`; use the same path for both as in the examples. Dataset filenames, array dtypes, timing conventions, seed streams, and stage ordering remain compatible with the original sensor pipeline. Clean/noisy variants can reuse the same photon files.
 
 Builds are found inside this checkout or on `PATH`; `SYNTHETIC_DATA_NATIVE_DIR` can point to another directory containing the native executables. Installation uses an editable Python package so moving to a new checkout requires rerunning setup to recreate its environment. No original repository is needed at runtime.
+
+
 
 
 ## License
