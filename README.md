@@ -58,6 +58,10 @@ src/
 Python imports use `spad_noise_injection` and `monte_carlo_simulation.scene`.
 After upgrading from the previous layout, rerun setup to refresh the editable installation and native builds. The `synthetic-data` commands are unchanged.
 
+The `tests/` folder is reserved for local tests and fixtures and is excluded from
+version control by `.gitignore`. Existing local test files are kept on disk;
+fresh clones do not include this folder.
+
 ## Commands
 
 | Command | Purpose |
