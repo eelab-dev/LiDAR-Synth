@@ -1,0 +1,26 @@
+{
+    "camera_position": [
+        70.0,
+        215.0,
+        650.7
+    ],
+    "look_at_point": [
+        70.0,
+        215.0,
+        649.7
+    ],
+    "up_direction": [
+        0.0,
+        1.0,
+        0.0
+    ],
+    "detector_width": 20.0,
+    "detector_height": 20.0,
+    "baseline_offset": [
+        55.0,
+        0.0,
+        0.0
+    ],
+    "delay_mean": 45.0,
+    "delay_std": 200.0
+}

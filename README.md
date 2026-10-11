@@ -38,44 +38,6 @@ synthetic-data run --config examples/example_room_2/room_2_simulation.json
 
 `--full` installs OpenUSD bindings, fetches a pinned tinyusdz revision, and builds pixelization plus all three SYCL targets. `PYTHON`, `VENV_DIR`, `HDF5_DIR`, `BUILD_JOBS`, and `SYCL_TARGETS` can override interpreter, environment location, build parallelism, and compile targets. Simulation selects a GPU for tracing and a CPU SYCL device for its output stage. `source ./activate.sh --full` configures both runtimes; compiling a CPU target does not change device selection. Set `HDF5_DIR` to a custom HDF5 installation prefix when system development libraries are unavailable.
 
-The full example uses a small output grid, but the preserved simulator internally expands its launch grid to roughly 500,000 samples and reserves a large photon buffer. It is not a lightweight CPU demo. See [known logic issues](future_improvment.md) before planning large runs.
-
-## Generate the room images
-
-The source includes scenes, configs, and notebooks under `examples/example_room_1/` and `examples/example_room_2/`. Large generated HDF5 files and plot images are excluded from Git; generate them locally. Both room examples require the full simulator setup above.
-
-After running the Room 2 simulation command, generate its depth and intensity images from the repository root:
-
-```bash
-MPLBACKEND=Agg python - <<'PYTHON'
-import json
-from pathlib import Path
-
-folder = Path("examples/example_room_2")
-for name in ("depth", "intensity"):
-    namespace = {}
-    notebook = json.loads((folder / f"{name}.ipynb").read_text())
-    for cell in notebook["cells"]:
-        if cell["cell_type"] == "code":
-            exec(compile("".join(cell["source"]), f"{name}.ipynb", "exec"), namespace)
-PYTHON
-```
-
-This uses the shared plotting functions without installing Jupyter. For Room 1, run `synthetic-data run --config examples/example_room_1/room_1_simulation.json` and change the plotting command’s folder to `examples/example_room_1`. Depth images display peak histogram bin indices, not calibrated physical distances. Intensity sums photons within the histogram window.
-
-For interactive editing, install Jupyter into the activated environment with `python -m pip install jupyterlab`, then run `jupyter lab`. Use that environment's Python kernel. Notebooks reuse existing histogram data; after changing configuration, rerun the pipeline or set `regenerate = True` in the notebook.
-
-Generate Room 2 reflectivity data separately:
-
-```bash
-synthetic-data run --config examples/example_room_2/room_2_reflectivity.json
-```
-
-## Portability
-
-No original source checkout or `/home/peizhao` directory is needed. Room configs resolve scene and output paths relative to their own location. Run the documented commands from the repository root.
-
-Do not copy `.venv/`, native `build/`, or Rust `target/` directories between machines; rebuild them using setup. These generated files can embed installation paths. `ONEAPI_ROOT`, `CUDA_HOME`, and `HDF5_DIR` are optional overrides for dependencies installed outside their usual locations. The full setup defaults to NVIDIA GPU and CPU SYCL targets; another supported GPU requires an appropriate toolchain/runtime and `SYCL_TARGETS` override. Windows and macOS are not validated targets for this project.
 
 ## Source layout
 
@@ -122,18 +84,6 @@ To reuse existing photon data, provide only an `inject-noise` stage pointing to 
 
 Builds are found inside this checkout or on `PATH`; `SYNTHETIC_DATA_NATIVE_DIR` can point to another directory containing the native executables. Installation uses an editable Python package so moving to a new checkout requires rerunning setup to recreate its environment. No original repository is needed at runtime.
 
-## Reproducibility and tests
-
-```bash
-python -m unittest discover -s tests -v
-# Optional native GPU equivalence checks after full setup:
-source ./activate.sh --full
-RUN_GPU_TESTS=1 python -m unittest discover -s tests -v
-```
-
-Golden fixtures were generated from the original working sources before renaming. Tests compare data arrays rather than HDF5 container bytes. Native sensor comparisons require the Rust extension installed by setup. See [validation results](docs/validation.md), [source provenance](docs/provenance.md), and [data contracts](docs/data_contracts.md), and [interface migration](docs/interfaces.md).
-
-This migration preserves the existing algorithms, including known defects. Findings and proposed future changes are recorded in [future_improvment.md](future_improvment.md). No model training, classifier code, weights, production datasets, or experiment logs are included.
 
 ## License
 

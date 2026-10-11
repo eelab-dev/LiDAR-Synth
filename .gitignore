@@ -26,3 +26,6 @@ examples/example_room_*/*.png
 examples/example_room_*/validation.json
 examples/example_room_*/reflectivity_validation.json
 future_improvment.md
+examples/NLOS_experiment_setting_example/*.h5
+examples/NLOS_experiment_setting_example/*.png
+examples/NLOS_experiment_setting_example/*.log

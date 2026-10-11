@@ -32,7 +32,7 @@
         "fov_y": 90,
         "width": 100,
         "height": 100,
-        "samples_per_ray": 3200,
+        "samples_per_ray": 15000,
         "seed": 1
       }
     },
