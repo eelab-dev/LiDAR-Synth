@@ -1,4 +1,4 @@
-# Synthetic Data Generation
+# LiDAR Synthetic Data Generation
 
 Monte Carlo LiDAR photon simulation, detector pixelization, and sensor noise generation in one repository. The simulator uses C++/SYCL, pixelization and sensor kernels use Rust, and Python provides scene generation, noise models, HDF5 IO, and a common command line.
 
