@@ -10,6 +10,15 @@ Scene + camera → diffuse map → ambient photon generation ───┤
                           → histogram / DNL → dark counts → HDF5
 ```
 
+![Step-by-step noise injection in a LiDAR photon histogram](docs/images/nlos_experiment/noise_injection.png)
+
+The figure illustrates the noise injection process step by step: (a) the ideal
+impulse response with direct and multipath returns; (b) system timing jitter and
+ambient noise; (c) detector dead-time distortion; and (d) time-to-digital converter
+(TDC) differential nonlinearity (DNL) distortion. The coloured regions distinguish
+background, multipath, and directly reflected photons; the red dashed line marks
+the predicted depth bin.
+
 ## Example images
 
 Depth previews show the strongest histogram bin (zero-based), not calibrated
